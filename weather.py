@@ -118,8 +118,8 @@ def show_weather():
         icon_url = f"http://openweathermap.org/img/w/{icon_code}.png"
 
         image = Image.open(requests.get(icon_url, stream=True).raw)
-        new_width = image.width * 2
-        new_height = image.height * 2
+        new_width = int(image.width * 1.5)
+        new_height = int(image.height * 1.5)
         resized_image = image.resize((new_width, new_height))
         icon_image = ImageTk.PhotoImage(resized_image)
 
@@ -131,7 +131,7 @@ def show_weather():
         )
         all_custom_tkinter_data.append(weather_icon_label)
         weather_icon_label.image = icon_image
-        weather_icon_label.place(relx=0.2, rely=0.3, anchor="center")
+        weather_icon_label.place(relx=0.1, rely=0.21, anchor="center")
 
         # weather
         weather_type_info = weather_data['weather'][0]['main']
@@ -141,7 +141,7 @@ def show_weather():
             font=ctk.CTkFont(size=30)
         )
         all_custom_tkinter_data.append(weather_type)
-        weather_type.place(relx=0.41, rely=0.3, anchor="center")
+        weather_type.place(relx=0.3, rely=0.3, anchor="center")
 
         # wind
         wind_speed_info = f"{weather_data['wind']['speed']:.1f} m/s"
